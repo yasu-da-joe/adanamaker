@@ -1,6 +1,11 @@
 function generateNickname() {
     const lastName = document.getElementById('lastName').value;
     const firstName = document.getElementById('firstName').value;
+
+    // SRあだ名表示をリセット
+    const specialMessageElement = document.getElementById('specialMessage');
+    specialMessageElement.style.display = 'none';
+    
     
     // 入力がひらがなかどうかをチェック
     if (!lastName.match(/^[ぁ-ん]+$/) || !firstName.match(/^[ぁ-ん]+$/)) {
@@ -21,10 +26,11 @@ function generateNickname() {
     let namePart;
 
     // 5%の確率で特別なあだ名を選択
-    const specialNicknames = ["ミスターRUNTEQ", "神", "天使の遣い", "ジャイアン", "ナベさん", "上位魔人", "ストリートミュージシャン", "机が恋人", "いつも眠い人"];
-    shuffleArray(specialNicknames);  // 特別なあだ名リストをシャッフル
-    if (Math.random() < 0.05) {
+    const specialNicknames = ["ミスターRUNTEQ", "神", "天使の遣い", "ジャイアン", "上位魔人", "ストリートミュージシャン", "机が恋人", "いつも眠い人"];
+    shuffleArray(specialNicknames);
+    if (Math.random() < 0.05) {  // 5%の確率で特別なあだ名を選択
         const specialNickname = specialNicknames[0];
+        displaySpecialMessage(); // SRメッセージを表示
         document.getElementById('result').innerHTML = "あなたのあだ名は<div class='nickname'>" + specialNickname + "</div>です！";
         return;
     }
@@ -56,10 +62,10 @@ function generateNickname() {
 
 function displaySpecialMessage() {
     const specialMessageElement = document.getElementById('specialMessage');
-    specialMessageElement.textContent = "祝！SRあだ名！！";
+    specialMessageElement.textContent = "祝！SRあだ名！";
     specialMessageElement.style.display = "block";
-    specialMessageElement.className = "specialAnimation";
 }
+    
 
 // フィッシャー-イェーツシャッフルアルゴリズム
 function shuffleArray(array) {
