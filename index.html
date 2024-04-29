@@ -71,29 +71,51 @@
     margin: auto;
 }
 
+
 .specialAnimation {
     animation: fadeIn 1s ease-out;
+}
+
+#specialMessage{
+  color: red;
+  font-size: 2em;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(0px);
+  animation: fadeIn 1s forwards; /* アニメーションの持続時間とfill modeを設定 */
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(0px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-100px);
     }
 }
+
 
   #error {
     color: red;
     text-align: center;
   }
 
+  canvas#myCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+  }
+
 </style>
 </head>
 <body>
+<canvas id="myCanvas" ></canvas> 
 <h1>あだ名作成アプリ</h1>
 <form id="nicknameForm">
   <p id="error"></p>
